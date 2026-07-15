@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-POP: The Global Sound & Visual Phenomenon</title>
+    <meta name="description" content="Discover the history, style, global impact, and interactive features of K-POP, the Korean popular music wave taking over the world.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+        @theme {
+            --font-title: 'Syne', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+
+            --color-neon-pink: #ff007f;
+            --color-neon-purple: #8b5cf6;
+            --color-neon-blue: #00f0ff;
+            --color-cyber-dark: #050409;
+
+            --animate-float-stick: float-stick 4s ease-in-out infinite;
+            --animate-float-orb: float-orb 25s infinite alternate ease-in-out;
+            --animate-gradient-move: gradient-move 6s ease infinite;
+        }
+    </style>
+
+    <style>
+    /* Keyframe Animations */
+    @keyframes float-stick {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+    @keyframes float-orb {
+        0% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(60px, 40px) scale(1.08); }
+        100% { transform: translate(-30px, -50px) scale(0.95); }
+    }
+    @keyframes gradient-move {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes flyParticle {
+        0% { transform: translate(0, 0) scale(1); opacity: 1; }
+        100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+    }
+
+    /* Ambient Cyber Grid Overlay */
+    .cyber-grid::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(0, 240, 255, 0.012) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 240, 255, 0.012) 1px, transparent 1px);
+        background-size: 60px 60px;
+        background-position: center top;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    /* Glassmorphism */
+    .glassmorphism {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glassmorphism:hover {
+        border-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 240, 255, 0.05);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #050409; }
+    ::-webkit-scrollbar-thumb { background: #1f1a3a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #8b5cf6; }
+
+    /* Cheer Particles */
+    .cheer-particle {
+        position: absolute;
+        pointer-events: none;
+        border-radius: 50%;
+        animation: flyParticle 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+        z-index: 20;
+    }
+
+    /* Scroll Reveal */
+    .reveal-card {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-card.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    </style>
+</head>
+<body class="cyber-grid bg-cyber-dark text-white font-body overflow-x-hidden relative min-h-screen">
+
+    <!-- Language Toggle -->
+    <div class="fixed top-4 right-4 z-[100]">
+        <button id="langToggle" onclick="toggleLang()" style="background: rgba(139,92,246,0.85); backdrop-filter: blur(8px); border: 1px solid rgba(139,92,246,0.5); color: white; padding: 8px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; transition: all 0.3s;">English</button>
+    </div>
+
+    <script>
+    var _isEnglish = false;
+    function toggleLang() {
+        _isEnglish = !_isEnglish;
+        document.getElementById('langToggle').textContent = _isEnglish ? '한국어' : 'English';
+        document.querySelectorAll('[data-en]').forEach(function(el) {
+            if (_isEnglish) {
+                if (!el.dataset.original) el.dataset.original = el.innerHTML;
+                el.innerHTML = el.dataset.en;
+            } else {
+                if (el.dataset.original) el.innerHTML = el.dataset.original;
+            }
+        });
+    }
+    </script>
+
+    <!-- Deep Cyber-Blue Glowing Gradients -->
+    <div class="absolute inset-0 z-0 pointer-events-none fixed" style="
+        background-image: 
+            radial-gradient(circle at 50% 0%, rgba(0, 110, 255, 0.18) 0%, transparent 50%),
+            radial-gradient(circle at 100% 30%, rgba(139, 92, 246, 0.12) 0%, transparent 40%),
+            radial-gradient(circle at 0% 70%, rgba(0, 240, 255, 0.12) 0%, transparent 50%),
+            radial-gradient(circle at 50% 100%, rgba(255, 0, 127, 0.05) 0%, transparent 60%);
+        background-attachment: fixed;
+    "></div>
+
+    <!-- Glow Orbs in Background -->
+    <div class="glow-orb fixed w-[550px] h-[550px] -top-[100px] -left-[100px] bg-neon-blue rounded-full filter blur-[140px] opacity-20 pointer-events-none z-0 animate-float-orb"></div>
+    <div class="glow-orb fixed w-[600px] h-[600px] top-[25%] -right-[150px] bg-neon-purple rounded-full filter blur-[140px] opacity-20 pointer-events-none z-0 animate-float-orb" style="animation-delay: -5s; animation-duration: 32s;"></div>
+    <div class="glow-orb fixed w-[500px] h-[500px] -bottom-[100px] left-[5%] bg-neon-pink rounded-full filter blur-[140px] opacity-20 pointer-events-none z-0 animate-float-orb" style="animation-delay: -10s; animation-duration: 24s;"></div>
+    <div class="glow-orb fixed w-[500px] h-[500px] top-[60%] left-[55%] bg-[#0044ff] rounded-full filter blur-[140px] opacity-15 pointer-events-none z-0 animate-float-orb" style="animation-delay: -7s; animation-duration: 30s;"></div>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 py-5 border-b border-white/8 backdrop-blur-md bg-cyber-dark/70">
+        <div class="max-w-[1200px] mx-auto px-6 flex justify-between items-center relative z-10">
+            <a href="#" class="font-title text-2xl font-extrabold bg-gradient-to-r from-neon-pink to-neon-blue bg-clip-text text-transparent tracking-tighter hover:opacity-90 transition-opacity duration-300">K-POP PULSE</a>
+            <nav>
+                <ul class="hidden md:flex items-center gap-8 list-none">
+                    <li><a href="#about" class="text-neutral-400 hover:text-white hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] transition-all duration-300 text-sm font-medium">소개</a></li>
+                    <li><a href="#generations" class="text-neutral-400 hover:text-white hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] transition-all duration-300 text-sm font-medium">세대별 역사</a></li>
+                    <li><a href="#artists" class="text-neutral-400 hover:text-white hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] transition-all duration-300 text-sm font-medium">대표 아티스트</a></li>
+                    <li><a href="#interactive" class="text-neutral-400 hover:text-white hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.5)] transition-all duration-300 text-sm font-medium">체험존</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-24 text-center">
+        <div class="max-w-[1200px] mx-auto px-6 relative z-10">
+            <h1 class="font-title text-5xl sm:text-7xl lg:text-8xl font-extrabold leading-[1.05] tracking-tighter mb-6 uppercase">
+                WELCOME TO THE<br>
+                <span class="bg-gradient-to-r from-neon-pink via-neon-purple to-neon-blue bg-clip-text text-transparent bg-[length:200%_200%] animate-gradient-move">K-POP UNIVERSE</span>
+            </h1>
+            <p class="text-base sm:text-lg lg:text-xl text-neutral-400 max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+                귀를 사로잡는 음악, 눈이 즐거운 퍼포먼스, 전 세계가 함께 즐기는 새로운 문화 현상. K-POP의 매력에 빠져보세요.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#interactive" class="px-9 py-4 rounded-full font-bold text-sm bg-gradient-to-r from-neon-pink to-neon-purple text-white shadow-[0_4px_20px_rgba(255,0,127,0.3)] hover:shadow-[0_8px_30px_rgba(255,0,127,0.5)] hover:-translate-y-0.5 transition-all duration-300 ease-out cursor-pointer text-center">응원봉 체험하기</a>
+                <a href="#generations" class="px-9 py-4 rounded-full font-bold text-sm bg-transparent border border-white/8 backdrop-blur-sm text-white hover:bg-white/5 hover:border-neon-blue hover:-translate-y-0.5 transition-all duration-300 ease-out cursor-pointer text-center">K-POP 역사 보기</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="max-w-[1200px] mx-auto px-6 py-20 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="font-title text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight">K-POP의 3대 핵심 매력</h2>
+            <p class="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base">단순한 음악 장르를 넘어 전 세계 팬덤을 형성한 K-POP만의 독창성</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="reveal-card" style="transition-delay: 100ms;">
+                <div class="glassmorphism rounded-3xl p-8 flex flex-col gap-4 transform hover:-translate-y-1.5 duration-500 h-full">
+                    <div class="w-12 h-12 rounded-xl bg-neon-blue/10 flex items-center justify-center text-neon-blue text-xl font-bold mb-2">⚡</div>
+                    <h3 class="text-xl font-bold text-white">칼군무와 비주얼</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">수개월간의 연습으로 완성되는 완벽한 싱크로율의 군무와 눈길을 사로잡는 화려한 콘셉트 비주얼.</p>
+                </div>
+            </div>
+            <div class="reveal-card" style="transition-delay: 250ms;">
+                <div class="glassmorphism rounded-3xl p-8 flex flex-col gap-4 transform hover:-translate-y-1.5 duration-500 h-full">
+                    <div class="w-12 h-12 rounded-xl bg-neon-pink/10 flex items-center justify-center text-neon-pink text-xl font-bold mb-2">✨</div>
+                    <h3 class="text-xl font-bold text-white">독창적인 음악성</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">힙합, R&B, EDM 등 트렌디한 글로벌 사운드에 중독성 강한 훅(Hook)을 조화롭게 녹여낸 웰메이드 음악.</p>
+                </div>
+            </div>
+            <div class="reveal-card" style="transition-delay: 400ms;">
+                <div class="glassmorphism rounded-3xl p-8 flex flex-col gap-4 transform hover:-translate-y-1.5 duration-500 h-full">
+                    <div class="w-12 h-12 rounded-xl bg-neon-purple/10 flex items-center justify-center text-neon-purple text-xl font-bold mb-2">💫</div>
+                    <h3 class="text-xl font-bold text-white">글로벌 팬덤 문화</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">자신들만의 고유한 응원봉, 앨범 수집, 활발한 소셜 소통을 통해 형성된 세계적인 결속력과 지지.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generations Section -->
+    <section id="generations" class="py-20 relative z-10 bg-gradient-to-b from-transparent via-neon-purple/[0.03] to-transparent">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-title text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight">K-POP 연대기</h2>
+                <p class="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base">1990년대 태동기부터 글로벌 트렌드를 주도하는 현재까지</p>
+            </div>
+            <div class="relative flex flex-col gap-10 md:gap-16">
+                <!-- Vertical Line -->
+                <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-[2px] bg-white/8 -translate-x-[1px]"></div>
+
+                <!-- 1st Gen -->
+                <div class="group flex flex-col md:flex-row w-full relative pl-12 md:pl-0 reveal-card" style="transition-delay: 100ms;">
+                    <div class="w-4 h-4 rounded-full bg-neon-purple absolute left-6 md:left-1/2 top-10 -translate-x-1/2 z-10 border-4 border-cyber-dark shadow-[0_0_10px_#8b5cf6] transition-all duration-300 group-hover:bg-neon-pink group-hover:shadow-[0_0_15px_#ff007f] group-hover:scale-125"></div>
+                    <div class="w-full md:w-[45%] pr-0 md:pr-8">
+                        <div class="glassmorphism rounded-3xl p-6 md:p-8 transform transition-all duration-500 group-hover:-translate-y-1">
+                            <span class="font-title text-xs text-neon-blue font-bold tracking-wider mb-2 block uppercase">1세대 (1990년대 후반)</span>
+                            <h3 class="text-lg md:text-xl font-bold mb-3">K-POP의 탄생과 아이돌의 시초</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                '서태지와 아이들'의 혁신적인 데뷔 이후 H.O.T., 젝스키스, S.E.S., 핑클 등이 등장하며 거대한 청소년 팬덤 문화를 형성했습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2nd Gen -->
+                <div class="group flex flex-col md:flex-row w-full relative pl-12 md:pl-0 md:justify-end reveal-card" style="transition-delay: 150ms;">
+                    <div class="w-4 h-4 rounded-full bg-neon-purple absolute left-6 md:left-1/2 top-10 -translate-x-1/2 z-10 border-4 border-cyber-dark shadow-[0_0_10px_#8b5cf6] transition-all duration-300 group-hover:bg-neon-pink group-hover:shadow-[0_0_15px_#ff007f] group-hover:scale-125"></div>
+                    <div class="w-full md:w-[45%] pl-0 md:pl-8">
+                        <div class="glassmorphism rounded-3xl p-6 md:p-8 transform transition-all duration-500 group-hover:-translate-y-1">
+                            <span class="font-title text-xs text-neon-pink font-bold tracking-wider mb-2 block uppercase">2세대 (2000년대 중후반)</span>
+                            <h3 class="text-lg md:text-xl font-bold mb-3">동아시아 진출 및 대중화</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                동방신기, 빅뱅, 소녀시대, 원더걸스 등이 아시아 전역을 휩쓸며 '한류'를 개척하고 대중적인 메가 히트곡 시대를 열었습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3rd Gen -->
+                <div class="group flex flex-col md:flex-row w-full relative pl-12 md:pl-0 reveal-card" style="transition-delay: 100ms;">
+                    <div class="w-4 h-4 rounded-full bg-neon-purple absolute left-6 md:left-1/2 top-10 -translate-x-1/2 z-10 border-4 border-cyber-dark shadow-[0_0_10px_#8b5cf6] transition-all duration-300 group-hover:bg-neon-pink group-hover:shadow-[0_0_15px_#ff007f] group-hover:scale-125"></div>
+                    <div class="w-full md:w-[45%] pr-0 md:pr-8">
+                        <div class="glassmorphism rounded-3xl p-6 md:p-8 transform transition-all duration-500 group-hover:-translate-y-1">
+                            <span class="font-title text-xs text-neon-blue font-bold tracking-wider mb-2 block uppercase">3세대 (2010년대 중반)</span>
+                            <h3 class="text-lg md:text-xl font-bold mb-3">글로벌 시장으로의 확장</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                방탄소년단(BTS)과 블랙핑크(BLACKPINK)가 빌보드 차트를 석권하고 소셜 미디어를 기반으로 전 세계적인 팬덤을 완성시켰습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4-5 Gen -->
+                <div class="group flex flex-col md:flex-row w-full relative pl-12 md:pl-0 md:justify-end reveal-card" style="transition-delay: 150ms;">
+                    <div class="w-4 h-4 rounded-full bg-neon-purple absolute left-6 md:left-1/2 top-10 -translate-x-1/2 z-10 border-4 border-cyber-dark shadow-[0_0_10px_#8b5cf6] transition-all duration-300 group-hover:bg-neon-pink group-hover:shadow-[0_0_15px_#ff007f] group-hover:scale-125"></div>
+                    <div class="w-full md:w-[45%] pl-0 md:pl-8">
+                        <div class="glassmorphism rounded-3xl p-6 md:p-8 transform transition-all duration-500 group-hover:-translate-y-1">
+                            <span class="font-title text-xs text-neon-pink font-bold tracking-wider mb-2 block uppercase">4-5세대 (2020년대 ~ 현재)</span>
+                            <h3 class="text-lg md:text-xl font-bold mb-3">글로벌 스탠다드 & 다변화</h3>
+                            <p class="text-neutral-400 text-sm leading-relaxed">
+                                뉴진스(NewJeans), 에스파(aespa), 아이브(IVE) 등이 활약하며 글로벌 팝 음악의 주류로 완전히 자리매김하였습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section from Wikipedia -->
+    <section id="features" class="max-w-[1200px] mx-auto px-6 py-20 relative z-10 bg-gradient-to-b from-transparent via-neon-purple/[0.03] to-transparent">
+        <div class="text-center mb-16">
+            <h2 class="font-title text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight" data-en="Key Features of K-POP">K-POP의 주요 특징</h2>
+            <p class="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base" data-en="Unique success factors defined by Wikipedia">위키백과가 정의하는 K-POP만의 독창적인 성공 요소</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Feature 1 -->
+            <div class="reveal-card" style="transition-delay: 100ms;">
+                <div class="glassmorphism rounded-2xl p-6 h-full border border-white/5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-neon-blue/20 flex items-center justify-center mb-4 text-neon-blue font-bold text-xl">🌐</div>
+                    <h3 class="text-lg font-bold text-white mb-2" data-en="Internationalized Music">국제화된 음악</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed" data-en="A blend of Korean sentiment and Western pop elements that creates a global trend easily resonating worldwide.">한국의 고유한 정서와 서구 팝 음악 요소가 융합되어 전 세계인이 쉽게 공감하고 즐길 수 있는 글로벌 트렌드로 발전했습니다.</p>
+                </div>
+            </div>
+            <!-- Feature 2 -->
+            <div class="reveal-card" style="transition-delay: 150ms;">
+                <div class="glassmorphism rounded-2xl p-6 h-full border border-white/5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-neon-pink/20 flex items-center justify-center mb-4 text-neon-pink font-bold text-xl">💿</div>
+                    <h3 class="text-lg font-bold text-white mb-2" data-en="Digital Album Focus">디지털 앨범 중심</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed" data-en="Proactive adoption of digital streaming and YouTube for global distribution.">디지털 음원과 스트리밍 시장에 선제적으로 적응하며, 유튜브 등 글로벌 미디어 플랫폼을 적극적으로 활용한 유통 구조를 갖췄습니다.</p>
+                </div>
+            </div>
+            <!-- Feature 3 -->
+            <div class="reveal-card" style="transition-delay: 200ms;">
+                <div class="glassmorphism rounded-2xl p-6 h-full border border-white/5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-neon-purple/20 flex items-center justify-center mb-4 text-neon-purple font-bold text-xl">👯</div>
+                    <h3 class="text-lg font-bold text-white mb-2" data-en="Elaborate Choreography">화려한 군무</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed" data-en="Signature synchronized multi‑member dance routines that set K‑POP apart visually.">'칼군무'로 불리는 다인원 그룹의 완벽한 싱크로율과 안무 구성은 K-POP만의 가장 큰 시각적 차별점이자 특징입니다.</p>
+                </div>
+            </div>
+            <!-- Feature 4 -->
+            <div class="reveal-card" style="transition-delay: 250ms;">
+                <div class="glassmorphism rounded-2xl p-6 h-full border border-white/5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-neon-blue/20 flex items-center justify-center mb-4 text-neon-blue font-bold text-xl">🎬</div>
+                    <h3 class="text-lg font-bold text-white mb-2" data-en="Visual Music Videos">시각적 뮤직비디오</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed" data-en="High‑quality CG and storytelling turn music videos into immersive experiences.">정교한 서사와 세계관, 고품질 CG가 결합된 화려한 뮤직비디오는 '듣는 음악'을 넘어 '보는 음악'으로의 패러다임 전환을 이끌었습니다.</p>
+                </div>
+            </div>
+            <!-- Feature 5 -->
+            <div class="reveal-card" style="transition-delay: 300ms;">
+                <div class="glassmorphism rounded-2xl p-6 h-full border border-white/5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-neon-pink/20 flex items-center justify-center mb-4 text-neon-pink font-bold text-xl">👗</div>
+                    <h3 class="text-lg font-bold text-white mb-2" data-en="Style & Fashion">스타일 및 패션</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed" data-en="Concept‑driven makeup and fashion influence global beauty trends.">음악 콘셉트와 완벽히 일체화된 세련된 메이크업와 패션 스타일링으로 전 세계 뷰티 및 패션 트렌드에 큰 영향을 미치고 있습니다.</p>
+                </div>
+            </div>
+            <!-- Feature 6 -->
+            <div class="reveal-card" style="transition-delay: 350ms;">
+                <div class="glassmorphism rounded-2xl p-6 h-full border border-white/5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-12 h-12 rounded-full bg-neon-purple/20 flex items-center justify-center mb-4 text-neon-purple font-bold text-xl">🫶</div>
+                    <h3 class="text-lg font-bold text-white mb-2" data-en="Powerful Fandom">강력한 팬덤</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed" data-en="Fans actively support artists through chants, covers, and fan‑created content.">수동적인 음악 소비를 넘어, 응원법, 커버 댄스, 2차 창작 등을 통해 아티스트의 성장을 함께 견인하는 능동적인 글로벌 팬덤 문화가 존재합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Section -->
+    <section id="artists" class="max-w-[1200px] mx-auto px-6 py-20 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="font-title text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight">대표 아티스트</h2>
+            <p class="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base">K-POP의 위상을 드높인 아이콘들을 소개합니다.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- BTS Card -->
+            <div class="reveal-card" style="transition-delay: 100ms;">
+                <div class="relative overflow-hidden flex flex-col justify-end h-[380px] rounded-3xl p-8 border border-white/8 transition-all duration-500 hover:scale-[1.02] hover:border-white/30 hover:shadow-[0_10px_30px_rgba(139,92,246,0.15)] cursor-pointer group glassmorphism" style="background: linear-gradient(to top, rgba(15, 12, 28, 0.7) 20%, rgba(139, 92, 246, 0.15) 60%, rgba(8, 7, 13, 0.1)), radial-gradient(circle at top right, rgba(123, 44, 191, 0.3), transparent);">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-dark/80 via-transparent to-transparent opacity-90 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <span class="bg-white/10 border border-white/15 px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider inline-block mb-3 backdrop-blur-sm uppercase">LEGEND</span>
+                        <h3 class="font-title text-2xl font-bold mb-2 tracking-tight group-hover:text-neon-blue transition-colors duration-300">방탄소년단 (BTS)</h3>
+                        <p class="text-neutral-400 text-xs sm:text-sm mb-4 leading-relaxed">빌보드 핫 100 1위 기록 및 그래미 어워드 노미네이트에 빛나는 21세기 팝 아이콘.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white/5 border border-white/5 px-2.5 py-1 rounded-md text-[10px] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">Dynamite</span>
+                            <span class="bg-white/5 border border-white/5 px-2.5 py-1 rounded-md text-[10px] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">Butter</span>
+                            <span class="bg-white/5 border border-white/5 px-2.5 py-1 rounded-md text-[10px] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">봄날</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- BLACKPINK Card -->
+            <div class="reveal-card" style="transition-delay: 250ms;">
+                <div class="relative overflow-hidden flex flex-col justify-end h-[380px] rounded-3xl p-8 border border-white/8 transition-all duration-500 hover:scale-[1.02] hover:border-white/30 hover:shadow-[0_10px_30px_rgba(255,0,127,0.15)] cursor-pointer group glassmorphism" style="background: linear-gradient(to top, rgba(15, 12, 28, 0.7) 20%, rgba(255, 0, 127, 0.15) 60%, rgba(8, 7, 13, 0.1)), radial-gradient(circle at top right, rgba(255, 0, 127, 0.3), transparent);">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-dark/80 via-transparent to-transparent opacity-90 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <span class="bg-white/10 border border-white/15 px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider inline-block mb-3 backdrop-blur-sm uppercase">GLOBAL QUEEN</span>
+                        <h3 class="font-title text-2xl font-bold mb-2 tracking-tight group-hover:text-neon-pink transition-colors duration-300">블랙핑크 (BLACKPINK)</h3>
+                        <p class="text-neutral-400 text-xs sm:text-sm mb-4 leading-relaxed">코첼라 헤드라이너, 전 세계 여성 그룹 중 가장 높은 빌보드 순위를 달성한 팀.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white/5 border border-white/5 px-2.5 py-1 rounded-md text-[10px] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">DDU-DU DDU-DU</span>
+                            <span class="bg-white/5 border border-white/5 px-2.5 py-1 rounded-md text-[10px] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">Pink Venom</span>
+                            <span class="bg-white/5 border border-white/5 px-2.5 py-1 rounded-md text-[10px] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">How You Like That</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- NewJeans Card -->
+            <div class="reveal-card" style="transition-delay: 400ms;">
+                <div class="relative overflow-hidden flex flex-col justify-end h-[380px] rounded-3xl p-8 border border-white/8 transition-all duration-500 hover:scale-[1.02] hover:border-white/30 hover:shadow-[0_10px_30px_rgba(0,240,255,0.15)] cursor-pointer group glassmorphism" style="background: linear-gradient(to top, rgba(15, 12, 28, 0.7) 20%, rgba(0, 240, 255, 0.15) 60%, rgba(8, 7, 13, 0.1)), radial-gradient(circle at top right, rgba(0, 240, 255, 0.3), transparent);">
+                    <div class="absolute inset-0 bg-gradient-to-t from-cyber-dark/80 via-transparent to-transparent opacity-90 transition-opacity duration-300"></div>
+                    <div class="relative z-10">
+                        <span class="bg-white/10 border border-white/15 px-3 py-1 rounded-full text-[10px] font-semibold tracking-wider inline-block mb-3 backdrop-blur-sm uppercase">NEW WAVE</span>
+                        <h3 class="font-title text-2xl font-bold mb-2 tracking-tight group-hover:text-neon-blue transition-colors duration-300">뉴진스 (NewJeans)</h3>
+                        <p class="text-neutral-400 text-xs sm:text-sm mb-4 leading-relaxed">Y2K 감성과 트렌디한 이지리스닝 음악으로 전 세계 음악 씬에 신선한 바람을 일으킨 루키.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white/5 border border-white/5 px-2.5 py-1 rounded-md text-[10px] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">Hype Boy</span>
+                            <span class="bg-white/5 border border-white/5 px-2.5 py-1 rounded-md text-[10px] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">Ditto</span>
+                            <span class="bg-white/5 border border-white/5 px-2.5 py-1 rounded-md text-[10px] text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">Super Shy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent News Section -->
+    <section id="news" class="max-w-[1200px] mx-auto px-6 py-20 relative z-10 bg-gradient-to-b from-transparent via-neon-blue/[0.03] to-transparent">
+        <div class="text-center mb-16">
+            <h2 class="font-title text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight">K-POP 트렌드 & 뉴스</h2>
+            <p class="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base">지금 가장 뜨거운 K-POP 소식을 확인하세요</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- News Card 1 -->
+            <div class="reveal-card" style="transition-delay: 100ms;">
+                <div class="glassmorphism rounded-3xl p-8 flex flex-col gap-4 transform hover:-translate-y-1.5 duration-500 h-full relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neon-blue/20 rounded-bl-full blur-3xl z-0 transition-all duration-500 group-hover:scale-150"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <span class="text-neon-blue text-xs font-bold uppercase tracking-widest mb-2">HOT TREND</span>
+                        <h3 class="text-xl font-bold text-white mb-3 leading-snug">코르티스(CORTIS), 빌보드 200 9주째 차트인 기염!</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed flex-grow">미니 2집 'GREENGREEN'과 타이틀곡 'REDRED'로 미국 빌보드 메인 차트에 9주 연속 머무르며 최근 5년 내 데뷔 보이그룹 최장기 기록을 달성했습니다.</p>
+                        <div class="text-xs text-neutral-500 mt-4">2026. 07. 15</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Card 2 -->
+            <div class="reveal-card" style="transition-delay: 200ms;">
+                <div class="glassmorphism rounded-3xl p-8 flex flex-col gap-4 transform hover:-translate-y-1.5 duration-500 h-full relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neon-pink/20 rounded-bl-full blur-3xl z-0 transition-all duration-500 group-hover:scale-150"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <span class="text-neon-pink text-xs font-bold uppercase tracking-widest mb-2">COMEBACK</span>
+                        <h3 class="text-xl font-bold text-white mb-3 leading-snug">여름 가요계 뜨거운 7월 컴백 대전</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed flex-grow">(여자)아이들, 베이비몬스터, 연준(TXT) 등 최정상 아티스트와 신예들이 연이어 신곡을 발표하며 무더위를 날릴 서머퀸·킹 경쟁에 돌입했습니다.</p>
+                        <div class="text-xs text-neutral-500 mt-4">2026. 07. 15</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Card 3 -->
+            <div class="reveal-card" style="transition-delay: 300ms;">
+                <div class="glassmorphism rounded-3xl p-8 flex flex-col gap-4 transform hover:-translate-y-1.5 duration-500 h-full relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-neon-purple/20 rounded-bl-full blur-3xl z-0 transition-all duration-500 group-hover:scale-150"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <span class="text-neon-purple text-xs font-bold uppercase tracking-widest mb-2">GLOBAL TOUR</span>
+                        <h3 class="text-xl font-bold text-white mb-3 leading-snug">이즈나(izna), 첫 아시아 6개 지역 투어 개최</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed flex-grow">글로벌 팬들의 기대를 모으고 있는 이즈나가 오는 9월 서울을 시작으로 대만, 필리핀 등 아시아 투어 'WHO DAT GIRL?'을 통해 해외 팬들과 만납니다.</p>
+                        <div class="text-xs text-neutral-500 mt-4">2026. 07. 15</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- News Card 4 -->
+            <div class="reveal-card" style="transition-delay: 400ms;">
+                <div class="glassmorphism rounded-3xl p-8 flex flex-col gap-4 transform hover:-translate-y-1.5 duration-500 h-full relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-bl-full blur-3xl z-0 transition-all duration-500 group-hover:scale-150"></div>
+                    <div class="relative z-10 flex flex-col h-full">
+                        <span class="text-white text-xs font-bold uppercase tracking-widest mb-2">INDUSTRY</span>
+                        <h3 class="text-xl font-bold text-white mb-3 leading-snug">JYP·트와이스·스키즈, 그래미 투표 회원 초청</h3>
+                        <p class="text-neutral-400 text-sm leading-relaxed flex-grow">박진영과 트와이스, 스트레이 키즈 등 다수의 한국 음악인들이 미국 최고 권위의 음악 시상식 '그래미 어워즈' 레코딩 아카데미의 투표 회원으로 선정되었습니다.</p>
+                        <div class="text-xs text-neutral-500 mt-4">2026. 07. 15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Experience Zone -->
+    <section id="interactive" class="py-20 relative z-10">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-title text-3xl sm:text-4xl font-extrabold mb-4 tracking-tight">K-POP 인터랙티브 체험존</h2>
+                <p class="text-neutral-400 max-w-xl mx-auto text-sm sm:text-base">나만의 응원봉을 꾸미고, 나의 K-POP 포지션을 알아보세요.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
+                <!-- Lightstick Simulator Card -->
+                <div class="glassmorphism rounded-3xl p-8 flex flex-col justify-between h-full">
+                    <div>
+                        <h3 class="font-title text-xl font-bold mb-6 uppercase tracking-wider">VIRTUAL LIGHTSTICK</h3>
+                        <div class="flex flex-col items-center justify-center h-[350px] relative" id="lightstickSimulator">
+                            <div class="relative flex flex-col items-center animate-float-stick">
+                                <div class="w-[120px] h-[120px] rounded-full bg-radial from-white to-white/10 border-2 border-white/40 shadow-[0_0_40px_#ff007f,inset_0_0_20px_rgba(255,255,255,0.5)] relative flex items-center justify-center transition-all duration-500 before:content-['K'] before:font-title before:text-5xl before:font-extrabold before:text-white before:drop-shadow-[0_0_10px_rgba(255,255,255,0.8)] before:absolute" id="lightstickGlobe"></div>
+                                <div class="w-6 h-[140px] bg-gradient-to-r from-[#1f1d2b] via-[#2d2b3d] to-[#1f1d2b] border border-white/10 rounded-b-xl relative -top-[5px] -z-10 before:content-[''] before:absolute before:top-5 before:left-1/2 before:-translate-x-1/2 before:w-2 before:h-2 before:rounded-full before:bg-neon-pink before:shadow-[0_0_5px_#ff007f]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5 mt-6">
+                        <p class="text-sm text-neutral-300">응원봉 색상을 골라보세요:</p>
+                        <div class="flex gap-3 justify-center">
+                            <button class="color-btn w-10 h-10 rounded-full border-2 border-white active shadow-[0_0_10px_currentColor] cursor-pointer transition-all duration-300 hover:scale-110" style="background-color: #ff007f; color: #ff007f;" onclick="changeLightstickColor('#ff007f', this)"></button>
+                            <button class="color-btn w-10 h-10 rounded-full border-2 border-transparent cursor-pointer transition-all duration-300 hover:scale-110" style="background-color: #00f0ff; color: #00f0ff;" onclick="changeLightstickColor('#00f0ff', this)"></button>
+                            <button class="color-btn w-10 h-10 rounded-full border-2 border-transparent cursor-pointer transition-all duration-300 hover:scale-110" style="background-color: #8b5cf6; color: #8b5cf6;" onclick="changeLightstickColor('#8b5cf6', this)"></button>
+                            <button class="color-btn w-10 h-10 rounded-full border-2 border-transparent cursor-pointer transition-all duration-300 hover:scale-110" style="background-color: #ffaa00; color: #ffaa00;" onclick="changeLightstickColor('#ffaa00', this)"></button>
+                        </div>
+                        <button class="w-full py-4 rounded-full font-bold text-sm bg-gradient-to-r from-neon-pink to-neon-purple text-white shadow-[0_4px_20px_rgba(255,0,127,0.3)] hover:shadow-[0_8px_30px_rgba(255,0,127,0.5)] hover:-translate-y-0.5 transition-all duration-300 cursor-pointer" onclick="triggerCheer(event)">콘서트 현장 응원하기 (Cheer!)</button>
+                    </div>
+                </div>
+
+                <!-- Role Quiz Card -->
+                <div class="glassmorphism rounded-3xl p-8 flex flex-col justify-between h-full">
+                    <div>
+                        <h3 class="font-title text-xl font-bold mb-6 uppercase tracking-wider">MY K-POP ROLE QUIZ</h3>
+                        <div id="quiz-flow" class="flex-grow flex flex-col justify-center">
+                            <div class="bg-white/[0.01] border border-white/8 rounded-2xl p-5 md:p-6">
+                                <div class="text-base md:text-lg font-semibold mb-6 text-white" id="quiz-question">나의 무대 위 매력 포인트는?</div>
+                                <div class="flex flex-col gap-3" id="quiz-options">
+                                    <button class="quiz-option bg-white/[0.02] border border-white/8 p-4 rounded-xl text-left text-sm md:text-base text-neutral-300 hover:bg-white/[0.05] hover:border-neon-blue hover:text-white hover:translate-x-1 transition-all duration-300 cursor-pointer" onclick="selectAnswer('Vocal')">심금을 울리는 호소력 짙은 감성 목소리</button>
+                                    <button class="quiz-option bg-white/[0.02] border border-white/8 p-4 rounded-xl text-left text-sm md:text-base text-neutral-300 hover:bg-white/[0.05] hover:border-neon-blue hover:text-white hover:translate-x-1 transition-all duration-300 cursor-pointer" onclick="selectAnswer('Dance')">중력을 거스르는 듯한 강렬하고 섬세한 춤선</button>
+                                    <button class="quiz-option bg-white/[0.02] border border-white/8 p-4 rounded-xl text-left text-sm md:text-base text-neutral-300 hover:bg-white/[0.05] hover:border-neon-blue hover:text-white hover:translate-x-1 transition-all duration-300 cursor-pointer" onclick="selectAnswer('Rap')">비트 위에 내뱉는 타이트하고 파워풀한 라임</button>
+                                    <button class="quiz-option bg-white/[0.02] border border-white/8 p-4 rounded-xl text-left text-sm md:text-base text-neutral-300 hover:bg-white/[0.05] hover:border-neon-blue hover:text-white hover:translate-x-1 transition-all duration-300 cursor-pointer" onclick="selectAnswer('Visual')">카메라 불빛을 흡수하는 압도적인 비주얼과 아우라</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="quiz-result hidden text-center animate-[fadeIn_0.5s_ease_forwards] py-8 flex flex-col items-center justify-center h-full" id="quiz-result">
+                        <div class="font-title text-2xl md:text-3xl text-neon-pink font-extrabold mb-4 tracking-tight drop-shadow-[0_0_15px_rgba(255,0,127,0.3)]" id="result-title">포지션</div>
+                        <p class="text-neutral-400 text-sm md:text-base max-w-md mx-auto mb-8 leading-relaxed" id="result-desc">테스트 내용 설명</p>
+                        <button class="px-9 py-4 rounded-full font-bold text-sm bg-transparent border border-white/8 text-white hover:bg-white/5 hover:border-neon-blue transition-all duration-300 cursor-pointer" onclick="resetQuiz()">다시 테스트하기</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/8 py-12 text-center text-sm text-neutral-500 relative z-10 bg-cyber-dark/40 backdrop-blur-sm">
+        <div class="max-w-[1200px] mx-auto px-6">
+            <p class="mb-2">&copy; 2026 K-POP Pulse. All Rights Reserved.</p>
+            <p class="text-xs opacity-60">Designed with passion for the global K-POP fandom using Tailwind CSS v4.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic Script -->
+    <script>
+        let currentGlobeColor = '#ff007f';
+
+        function changeLightstickColor(color, buttonElement) {
+            currentGlobeColor = color;
+            const globe = document.getElementById('lightstickGlobe');
+            globe.style.boxShadow = `0 0 50px ${color}, inset 0 0 25px rgba(255, 255, 255, 0.6)`;
+            
+            // Handle active class styling via standard tailwind class modification
+            const buttons = document.querySelectorAll('.color-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'border-white', 'shadow-[0_0_10px_currentColor]');
+                btn.classList.add('border-transparent');
+            });
+            buttonElement.classList.remove('border-transparent');
+            buttonElement.classList.add('active', 'border-white', 'shadow-[0_0_10px_currentColor]');
+        }
+
+        function triggerCheer(event) {
+            const container = document.getElementById('lightstickSimulator');
+            
+            // Spawn 15 colorful cheer particles around the lightstick
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('cheer-particle');
+                
+                // Styling particle
+                particle.style.backgroundColor = currentGlobeColor;
+                particle.style.boxShadow = `0 0 8px ${currentGlobeColor}`;
+                
+                // Random size
+                const size = Math.random() * 8 + 6;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Initial placement at lightstick center
+                particle.style.left = '50%';
+                particle.style.top = '40%';
+                
+                // Random travel distance and angle
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 120 + 60;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                
+                container.appendChild(particle);
+                
+                // Remove particle when animation ends
+                particle.addEventListener('animationend', () => {
+                    particle.remove();
+                });
+            }
+        }
+
+        // Quiz Logic
+        const results = {
+            Vocal: {
+                title: "메인 보컬 (Main Vocalist)",
+                desc: "당신은 매혹적인 음색과 탄탄한 가창력으로 무대의 중심을 잡아주는 메인 보컬입니다! 곡의 클라이맥스 고음 파트를 완벽하게 소화하여 사람들에게 깊은 감동을 안겨주는 재능을 가지고 있습니다."
+            },
+            Dance: {
+                title: "메인 댄서 (Main Dancer)",
+                desc: "당신은 놀라운 리듬감과 디테일한 표현력으로 무대를 뒤흔드는 퍼포먼스의 지배자, 메인 댄서입니다! 당신의 손끝 발끝 몸짓 하나가 관중의 시선을 강하게 사로잡습니다."
+            },
+            Rap: {
+                title: "메인 래퍼 (Main Rapper)",
+                desc: "당신은 트렌디한 플로우와 파워풀한 가사 전달력으로 곡에 독보적인 엣지를 더하는 메인 래퍼입니다! 무대 위의 비트를 온전히 장악하며 분위기를 한순간에 반전시킵니다."
+            },
+            Visual: {
+                title: "센터 & 비주얼 (Center & Visual)",
+                desc: "당신은 빛나는 비주얼과 타고난 아우라로 무대의 전체 무드를 결정짓는 센터입니다! 카메라를 사로잡는 킬링파트로 무대 장악력 200%를 완성하는 대체불가 멤버입니다."
+            }
+        };
+
+        function selectAnswer(type) {
+            const flowContainer = document.getElementById('quiz-flow');
+            const resultContainer = document.getElementById('quiz-result');
+            const resultTitle = document.getElementById('result-title');
+            const resultDesc = document.getElementById('result-desc');
+
+            const result = results[type];
+            resultTitle.textContent = result.title;
+            resultDesc.textContent = result.desc;
+
+            flowContainer.style.display = 'none';
+            resultContainer.style.display = 'flex';
+        }
+
+        function resetQuiz() {
+            const flowContainer = document.getElementById('quiz-flow');
+            const resultContainer = document.getElementById('quiz-result');
+            
+            resultContainer.style.display = 'none';
+            flowContainer.style.display = 'flex';
+        }
+
+        // Scroll Reveal Observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Animation runs once
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+
+            document.querySelectorAll('.reveal-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
